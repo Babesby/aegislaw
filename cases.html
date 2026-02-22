@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Studies — ALP Aegis Law Partners</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --obsidian: #ffffff; --deep: #f7f5f0; --surface: #f0ede6; --card: #ede9e0;
+      --border: rgba(180,155,100,0.22); --gold: #a8862e; --gold-light: #c9a84c;
+      --gold-dim: rgba(168,134,46,0.28); --ivory: #1a1610; --ivory-dim: rgba(26,22,16,0.72);
+      --text: #2a2318; --muted: rgba(42,35,24,0.52); --accent: #2c5f8a;
+      --trans: 0.4s cubic-bezier(0.23,1,0.32,1);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background: #fff; color: var(--text); font-weight: 300; overflow-x: hidden; cursor: none; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--deep); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+    body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E"); pointer-events:none; z-index:1000; opacity:0.4; }
+    .cursor { position:fixed; top:0; left:0; width:8px; height:8px; background:var(--gold); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:width .3s,height .3s,background .3s; }
+    .cursor-ring { position:fixed; top:0; left:0; width:36px; height:36px; border:1px solid var(--gold-dim); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:transform .15s ease-out,width .3s,height .3s; }
+    .cursor.active { width:14px; height:14px; background:var(--gold-light); }
+    .cursor-ring.active { width:56px; height:56px; border-color:var(--gold); }
+
+    /* ─── NAV ─── */
+    nav { position:fixed; top:0; left:0; right:0; z-index:500; padding:0 max(2rem,5vw); background:rgba(255,255,255,0.92); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid var(--border); transition:var(--trans); }
+    nav.scrolled { background:rgba(255,255,255,0.98); box-shadow:0 1px 24px rgba(168,134,46,0.08); }
+    .nav-inner { max-width:1400px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:76px; }
+    .nav-logo { display:flex; align-items:baseline; gap:.5rem; text-decoration:none; }
+    .logo-alp { font-family:'Cormorant Garamond',serif; font-size:1.9rem; font-weight:600; color:var(--gold); letter-spacing:.08em; line-height:1; }
+    .logo-full { font-size:.65rem; font-weight:300; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); }
+    .nav-links { display:flex; align-items:center; gap:2rem; list-style:none; }
+    .nav-links a { color:var(--muted); text-decoration:none; font-size:.72rem; font-weight:400; letter-spacing:.16em; text-transform:uppercase; transition:color var(--trans); position:relative; white-space:nowrap; }
+    .nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:1px; background:var(--gold); transition:width var(--trans); }
+    .nav-links a:hover,.nav-links a.active { color:var(--gold); }
+    .nav-links a:hover::after,.nav-links a.active::after { width:100%; }
+    .nav-cta { padding:.6rem 1.4rem; border:1px solid var(--gold-dim); color:var(--gold)!important; font-size:.68rem!important; letter-spacing:.18em; text-transform:uppercase; text-decoration:none; transition:all var(--trans)!important; white-space:nowrap; }
+    .nav-cta::after { display:none!important; }
+    .nav-cta:hover { background:var(--gold)!important; color:#fff!important; }
+    .hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:none; padding:4px; }
+    .hamburger span { display:block; width:24px; height:1px; background:var(--gold); transition:var(--trans); }
+    .hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+    .hamburger.open span:nth-child(2){opacity:0;}
+    .hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+    .mobile-menu { position:fixed; inset:0; background:#fff; z-index:400; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.8rem; transform:translateX(100%); transition:transform .5s cubic-bezier(.77,0,.175,1); }
+    .mobile-menu.open{transform:translateX(0);}
+    .mobile-menu a { font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:300; color:rgba(26,22,16,.5); text-decoration:none; letter-spacing:.06em; transition:color var(--trans); }
+    .mobile-menu a:hover{color:var(--gold);}
+
+    /* ─── PAGE HERO ─── */
+    .page-hero { padding-top:76px; min-height:400px; background:linear-gradient(160deg,#fff 0%,#f5f1ea 60%,#ede8dd 100%); position:relative; overflow:hidden; display:flex; align-items:flex-end; }
+    .page-hero::before { content:''; position:absolute; right:-100px; top:-100px; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle,rgba(168,134,46,.06) 0%,transparent 70%); }
+    .page-hero::after { content:''; position:absolute; bottom:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--gold-dim),transparent); }
+    .page-hero-inner { max-width:1400px; width:100%; margin:0 auto; padding:5rem max(2rem,5vw) 4rem; position:relative; z-index:1; }
+    .page-breadcrumb { display:flex; align-items:center; gap:.6rem; font-size:.62rem; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); margin-bottom:1.2rem; }
+    .page-breadcrumb a { color:var(--gold); text-decoration:none; }
+    .page-h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(2.8rem,6vw,5.5rem); font-weight:300; line-height:1.05; color:#1a1610; letter-spacing:-.01em; }
+    .page-h1 em { font-style:italic; color:var(--gold); }
+    .page-sub { font-size:.9rem; color:var(--muted); line-height:1.8; max-width:520px; margin-top:1rem; }
+
+    /* ─── SHARED ─── */
+    section { padding:clamp(4.5rem,9vw,8rem) max(2rem,5vw); }
+    .container { max-width:1400px; margin:0 auto; }
+    .section-tag { font-size:.6rem; letter-spacing:.38em; text-transform:uppercase; color:var(--gold); display:flex; align-items:center; gap:.75rem; margin-bottom:1.2rem; }
+    .section-tag::before { content:'—'; color:var(--gold-dim); }
+    .section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4.5vw,3.8rem); font-weight:300; line-height:1.1; color:#1a1610; }
+    .section-title em { font-style:italic; color:var(--gold); }
+    .section-sub { font-size:.85rem; color:var(--muted); line-height:1.9; max-width:520px; margin-top:1rem; }
+    .divider { width:48px; height:1px; background:var(--gold); margin:1.5rem 0; }
+    @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+    .reveal { opacity:0; transform:translateY(30px); transition:opacity .7s ease,transform .7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* ─── FILTER TABS ─── */
+    .filter-bar { display:flex; align-items:center; gap:1rem; flex-wrap:wrap; margin-top:2.5rem; }
+    .filter-btn { padding:.55rem 1.4rem; border:1px solid var(--border); background:transparent; font-family:'Jost',sans-serif; font-size:.65rem; font-weight:400; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); cursor:none; transition:all var(--trans); }
+    .filter-btn:hover { border-color:var(--gold-dim); color:var(--gold); }
+    .filter-btn.active { background:var(--gold); color:#fff; border-color:var(--gold); }
+
+    /* ─── CASES GRID ─── */
+    .cases-section { background:var(--deep); }
+    .cases-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; margin-top:1rem; }
+    .case-card {
+      background:#fff; overflow:hidden; position:relative;
+      border:1px solid rgba(180,155,100,.15);
+      transition:transform var(--trans), box-shadow var(--trans);
+    }
+    .case-card:hover { transform:translateY(-4px); box-shadow:0 16px 48px rgba(168,134,46,.12); }
+    .case-card.hidden { display:none; }
+    .case-img { aspect-ratio:16/10; overflow:hidden; position:relative; }
+    .case-img img { width:100%; height:100%; object-fit:cover; transition:transform .7s ease; }
+    .case-card:hover .case-img img { transform:scale(1.04); }
+    .case-img .img-ph { width:100%; height:100%; background:var(--surface); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.6rem; color:var(--muted); font-size:.65rem; letter-spacing:.18em; text-transform:uppercase; }
+    .case-img .img-ph svg { opacity:.4; color:var(--gold); }
+    .case-cat-tag {
+      position:absolute; top:1rem; left:1rem;
+      background:var(--gold); color:#fff; font-size:.58rem;
+      font-weight:500; letter-spacing:.18em; text-transform:uppercase;
+      padding:.3rem .7rem; z-index:2;
+    }
+    .case-body { padding:1.75rem; }
+    .case-num { font-family:'Cormorant Garamond',serif; font-size:.85rem; color:var(--gold-dim); margin-bottom:.75rem; }
+    .case-title { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:400; color:#1a1610; margin-bottom:.6rem; line-height:1.2; }
+    .case-text { font-size:.8rem; color:var(--muted); line-height:1.8; }
+    .case-footer { display:flex; align-items:center; justify-content:space-between; padding:1rem 1.75rem; border-top:1px solid var(--border); }
+    .case-result { font-size:.62rem; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); }
+    .case-cta { font-size:.62rem; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); text-decoration:none; display:flex; align-items:center; gap:.4rem; transition:color var(--trans); }
+    .case-cta:hover { color:var(--gold); }
+    .case-cta::after { content:'→'; transition:transform var(--trans); }
+    .case-cta:hover::after { transform:translateX(3px); }
+
+    /* ─── CASE DETAIL MODAL ─── */
+    .modal-overlay { position:fixed; inset:0; background:rgba(26,22,16,.7); z-index:800; opacity:0; pointer-events:none; transition:opacity .4s ease; backdrop-filter:blur(4px); }
+    .modal-overlay.open { opacity:1; pointer-events:all; }
+    .modal { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(.96); z-index:801; width:min(640px,92vw); background:#fff; opacity:0; transition:opacity .4s ease,transform .4s ease; max-height:90vh; overflow-y:auto; }
+    .modal-overlay.open .modal { opacity:1; transform:translate(-50%,-50%) scale(1); }
+    .modal-img { aspect-ratio:16/9; overflow:hidden; }
+    .modal-img img { width:100%; height:100%; object-fit:cover; }
+    .modal-body { padding:2.5rem; }
+    .modal-cat { font-size:.6rem; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); margin-bottom:.75rem; }
+    .modal-title { font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:#1a1610; margin-bottom:1rem; }
+    .modal-text { font-size:.85rem; color:var(--muted); line-height:1.85; margin-bottom:1.5rem; }
+    .modal-close { position:absolute; top:1rem; right:1rem; background:var(--gold); border:none; color:#fff; width:36px; height:36px; cursor:none; font-size:1.1rem; display:flex; align-items:center; justify-content:center; transition:background var(--trans); z-index:2; }
+    .modal-close:hover { background:#1a1610; }
+
+    /* ─── CONTACT CTA ─── */
+    .contact-cta-sec { background:linear-gradient(160deg,#fff 0%,var(--surface) 100%); }
+    .contact-cta-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+    .cta-info-items { display:flex; flex-direction:column; gap:1.5rem; margin-top:2rem; }
+    .cta-info-item { display:flex; gap:1rem; align-items:flex-start; }
+    .cta-icon { width:44px; height:44px; border:1px solid var(--gold-dim); display:flex; align-items:center; justify-content:center; color:var(--gold); flex-shrink:0; }
+    .cta-label { font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); }
+    .cta-value { font-size:.85rem; color:var(--text); margin-top:.2rem; line-height:1.5; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .form-group { display:flex; flex-direction:column; gap:.4rem; margin-bottom:1rem; }
+    .form-group label { font-size:.6rem; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); }
+    .form-group input,.form-group select,.form-group textarea { background:#fff; border:1px solid var(--border); color:var(--text); padding:.85rem 1rem; font-family:'Jost',sans-serif; font-size:.82rem; font-weight:300; transition:border-color var(--trans); outline:none; width:100%; resize:none; -webkit-appearance:none; }
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus { border-color:var(--gold); background:rgba(168,134,46,.02); }
+    .form-group select option { background:#fff; color:var(--text); }
+    .form-group textarea { height:120px; }
+    .btn-primary { display:inline-block; padding:1rem 2.5rem; background:var(--gold); color:#fff; font-size:.7rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase; text-decoration:none; transition:var(--trans); position:relative; overflow:hidden; white-space:nowrap; border:none; cursor:none; }
+    .btn-primary::before { content:''; position:absolute; inset:0; background:#1a1610; transform:translateX(-101%); transition:transform var(--trans); }
+    .btn-primary:hover::before { transform:translateX(0); }
+    .btn-primary span { position:relative; z-index:1; color:#fff; }
+
+    /* ─── STATS ─── */
+    .stats-bar { background:#1a1610; padding:3.5rem max(2rem,5vw); }
+    .stats-bar-inner { max-width:1400px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; text-align:center; }
+    .stat-item { border-right:1px solid rgba(168,134,46,.15); }
+    .stat-item:last-child { border-right:none; }
+    .stat-num-big { font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:300; color:var(--gold); line-height:1; }
+    .stat-label { font-size:.62rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.38); margin-top:.4rem; }
+
+    /* ─── FOOTER ─── */
+    footer { background:#1a1610; border-top:1px solid rgba(168,134,46,.2); padding:5rem max(2rem,5vw) 2rem; }
+    .footer-top { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:4rem; padding-bottom:4rem; border-bottom:1px solid rgba(168,134,46,.15); }
+    .footer-logo { margin-bottom:1rem; }
+    .footer-desc { font-size:.8rem; color:rgba(255,255,255,.35); line-height:1.8; }
+    .footer-socials { display:flex; gap:.75rem; margin-top:1.5rem; }
+    .social-link { width:36px; height:36px; border:1px solid rgba(255,255,255,.12); display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.32); text-decoration:none; transition:var(--trans); font-size:.75rem; }
+    .social-link:hover { border-color:var(--gold); color:var(--gold); }
+    .footer-heading { font-size:.62rem; letter-spacing:.28em; text-transform:uppercase; color:var(--gold); margin-bottom:1.5rem; }
+    .footer-links { display:flex; flex-direction:column; gap:.65rem; }
+    .footer-links a { font-size:.8rem; color:rgba(255,255,255,.35); text-decoration:none; transition:color var(--trans); }
+    .footer-links a:hover { color:rgba(255,255,255,.85); }
+    .footer-newsletter { display:flex; margin-top:1.5rem; }
+    .footer-newsletter input { flex:1; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); border-right:none; padding:.75rem 1rem; color:rgba(255,255,255,.75); font-family:'Jost',sans-serif; font-size:.75rem; outline:none; }
+    .footer-newsletter button { background:var(--gold); border:none; padding:.75rem 1.1rem; color:#fff; cursor:none; font-size:.85rem; transition:background var(--trans); }
+    .footer-newsletter button:hover { background:var(--gold-light); }
+    .footer-bottom { display:flex; justify-content:space-between; align-items:center; padding-top:2rem; flex-wrap:wrap; gap:1rem; }
+    .footer-copy { font-size:.7rem; color:rgba(255,255,255,.22); }
+    .footer-legal { display:flex; gap:1.5rem; }
+    .footer-legal a { font-size:.65rem; color:rgba(255,255,255,.22); text-decoration:none; letter-spacing:.1em; transition:color var(--trans); }
+    .footer-legal a:hover { color:var(--gold); }
+    .banner { background:var(--gold); padding:1.5rem max(2rem,5vw); display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
+    .banner-text { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:400; color:#1a1610; font-style:italic; }
+    .banner-sub { font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(26,22,16,.5); margin-top:.2rem; }
+    .banner-btn { padding:.75rem 2rem; border:1.5px solid #1a1610; color:#1a1610; font-size:.65rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase; text-decoration:none; transition:all .3s ease; white-space:nowrap; }
+    .banner-btn:hover { background:#1a1610; color:var(--gold); }
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width:1024px){
+      .cases-grid{grid-template-columns:repeat(2,1fr)}
+      .contact-cta-grid{grid-template-columns:1fr;gap:3rem}
+      .footer-top{grid-template-columns:1fr 1fr;gap:2.5rem}
+      .stats-bar-inner{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:768px){
+      .nav-links{display:none}
+      .hamburger{display:flex}
+      .cases-grid{grid-template-columns:1fr}
+      .footer-top{grid-template-columns:1fr}
+      .stats-bar-inner{grid-template-columns:1fr 1fr}
+      .form-row{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal" id="modal">
+      <button class="modal-close" onclick="closeModalBtn()">✕</button>
+      <div class="modal-img"><img id="modalImg" src="" alt="" /></div>
+      <div class="modal-body">
+        <div class="modal-cat" id="modalCat"></div>
+        <div class="modal-title" id="modalTitle"></div>
+        <p class="modal-text" id="modalText"></p>
+        <a href="contact.html" class="btn-primary"><span>Discuss Your Case →</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" onclick="closeMenu()">Home</a>
+    <a href="index.html#about" onclick="closeMenu()">About</a>
+    <a href="services.html" onclick="closeMenu()">Services</a>
+    <a href="cases.html" onclick="closeMenu()">Case Studies</a>
+    <a href="contact.html" onclick="closeMenu()"class="nav-cta">Free Consultation</a>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-alp">ALP</span>
+        <span class="logo-full">Aegis Law Partners</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="cases.html" class="active">Case Studies</a></li>
+        <li><a href="contact.html" class="nav-cta">Free Consultation</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="page-breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <span>Case Studies</span>
+      </div>
+      <h1 class="page-h1">Case <em>Studies</em></h1>
+      <p class="page-sub">Many projects done that make us stand out. A curated record of landmark cases that demonstrate the breadth, depth, and consistent excellence of the ALP approach.</p>
+    </div>
+  </div>
+
+  <!-- Cases Section -->
+  <section class="cases-section">
+    <div class="container">
+      <div class="section-tag reveal">Our Record</div>
+      <h2 class="section-title reveal">Cases That Define <em>Excellence</em></h2>
+      <p class="section-sub reveal">Every case below represents a client whose rights we protected, whose freedom we defended, or whose future we helped secure. Browse by category or view all.</p>
+
+      <!-- Filter -->
+      <div class="filter-bar reveal">
+        <button class="filter-btn active" data-filter="all">All Cases</button>
+        <button class="filter-btn" data-filter="personal">Personal</button>
+        <button class="filter-btn" data-filter="crime">Crime</button>
+        <button class="filter-btn" data-filter="family">Family</button>
+        <button class="filter-btn" data-filter="violence">Violence</button>
+        <button class="filter-btn" data-filter="financial">Financial</button>
+      </div>
+
+      <!-- Grid -->
+      <div class="cases-grid" id="casesGrid" style="margin-top:3rem;">
+
+        <div class="case-card reveal" data-cat="personal" data-title="Personal Injury" data-full="Our team secured full compensation for a client who suffered life-altering injuries in a workplace accident. We fought the employer's insurers through two rounds of appeal, ultimately achieving a settlement that covered medical costs, loss of earnings, and future care — exceeding the original offer by 340%. We help our clients fight against harms with relentless conviction." data-result="Settlement Secured" data-img="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80&auto=format&fit=crop">
+          <div class="case-img">
+            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&q=80&auto=format&fit=crop" alt="Personal Injury Case" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="img-ph" style="display:none;height:100%"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Case Image</span></div>
+            <span class="case-cat-tag">Personal</span>
+          </div>
+          <div class="case-body">
+            <div class="case-num">Case 01</div>
+            <div class="case-title">Personal Injury</div>
+            <p class="case-text">We help our clients fight against harms with relentless conviction. Securing full compensation through appeal.</p>
+          </div>
+          <div class="case-footer">
+            <span class="case-result">✓ Settlement Secured</span>
+            <a href="#" class="case-cta" onclick="openModal(this)">Read More</a>
+          </div>
+        </div>
+
+        <div class="case-card reveal" data-cat="family" data-title="Legal Separation" data-full="ALP guided a client through a high-stakes legal separation involving significant assets, international property, and complex custody arrangements across two jurisdictions. Our family law team achieved a resolution that preserved our client's financial position and ensured full custody rights — completed in under nine months without setting foot in court. We give the best service on legal separation." data-result="Full Settlement" data-img="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80&auto=format&fit=crop">
+          <div class="case-img">
+            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80&auto=format&fit=crop" alt="Legal Separation Case" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="img-ph" style="display:none;height:100%"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Case Image</span></div>
+            <span class="case-cat-tag">Family</span>
+          </div>
+          <div class="case-body">
+            <div class="case-num">Case 02</div>
+            <div class="case-title">Legal Separation</div>
+            <p class="case-text">High-asset cross-jurisdictional separation resolved with full custody rights secured within nine months.</p>
+          </div>
+          <div class="case-footer">
+            <span class="case-result">✓ Full Settlement</span>
+            <a href="#" class="case-cta" onclick="openModal(this)">Read More</a>
+          </div>
+        </div>
+
+        <div class="case-card reveal" data-cat="violence" data-title="Domestic Violence" data-full="ALP secured a landmark ruling in a domestic violence case that set a precedent for protective order enforcement in the UK. Our team obtained emergency injunctions within 48 hours, ensured the safe relocation of our client and dependents, and pursued a successful criminal prosecution — resulting in a custodial sentence. We have an award for fighting domestic violence. We do not tolerate harm." data-result="Custodial Sentence" data-img="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80&auto=format&fit=crop">
+          <div class="case-img">
+            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&q=80&auto=format&fit=crop" alt="Domestic Violence Case" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="img-ph" style="display:none;height:100%"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Case Image</span></div>
+            <span class="case-cat-tag">Violence</span>
+          </div>
+          <div class="case-body">
+            <div class="case-num">Case 03</div>
+            <div class="case-title">Domestic Violence</div>
+            <p class="case-text">Award-winning intervention securing emergency injunctions and a successful criminal prosecution for our client.</p>
+          </div>
+          <div class="case-footer">
+            <span class="case-result">✓ Custodial Sentence</span>
+            <a href="#" class="case-cta" onclick="openModal(this)">Read More</a>
+          </div>
+        </div>
+
+        <div class="case-card reveal" data-cat="personal" data-title="Fire Accident" data-full="We represented victims of a catastrophic fire accident caused by commercial negligence, achieving a multi-party settlement that compensated over 40 claimants. Our forensic investigation uncovered systemic safety failures that the defendant sought to conceal, ultimately forcing a full admission of liability. We fight for our clients who are victims of accidents — and we do not stop until justice is served." data-result="Multi-party Win" data-img="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=800&q=80&auto=format&fit=crop">
+          <div class="case-img">
+            <img src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=600&q=80&auto=format&fit=crop" alt="Fire Accident Case" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="img-ph" style="display:none;height:100%"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Case Image</span></div>
+            <span class="case-cat-tag">Personal</span>
+          </div>
+          <div class="case-body">
+            <div class="case-num">Case 04</div>
+            <div class="case-title">Fire Accident</div>
+            <p class="case-text">Multi-party compensation secured following commercial negligence, covering over 40 claimants with full liability admitted.</p>
+          </div>
+          <div class="case-footer">
+            <span class="case-result">✓ Multi-party Win</span>
+            <a href="#" class="case-cta" onclick="openModal(this)">Read More</a>
+          </div>
+        </div>
+
+        <div class="case-card reveal" data-cat="personal" data-title="Illegal Construction" data-full="Our real estate team successfully overturned an illegal construction order that had displaced our client from their residential property of 14 years. Through meticulous review of planning permissions, local authority records, and contractor agreements, we established clear unlawful conduct and obtained a court order for full reinstatement — with costs awarded to our client. We fight for our clients to get back their homes." data-result="Property Reinstated" data-img="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80&auto=format&fit=crop">
+          <div class="case-img">
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80&auto=format&fit=crop" alt="Illegal Construction Case" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="img-ph" style="display:none;height:100%"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Case Image</span></div>
+            <span class="case-cat-tag">Personal</span>
+          </div>
+          <div class="case-body">
+            <div class="case-num">Case 05</div>
+            <div class="case-title">Illegal Construction</div>
+            <p class="case-text">Property reinstatement secured after 14-year displacement, with all costs awarded to our client by the court.</p>
+          </div>
+          <div class="case-footer">
+            <span class="case-result">✓ Property Reinstated</span>
+            <a href="#" class="case-cta" onclick="openModal(this)">Read More</a>
+          </div>
+        </div>
+
+        <div class="case-card reveal" data-cat="violence" data-title="Sexual Harassment" data-full="ALP pursued a high-profile sexual harassment case against a corporate employer on behalf of four employees, achieving one of the largest out-of-court settlements in this category in the UK in recent years. The case also resulted in mandatory firm-wide policy reform. We do not support sexual harassment or child abuse — and we will pursue every available avenue to protect victims and hold perpetrators to account." data-result="Record Settlement" data-img="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80&auto=format&fit=crop">
+          <div class="case-img">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80&auto=format&fit=crop" alt="Sexual Harassment Case" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="img-ph" style="display:none;height:100%"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Case Image</span></div>
+            <span class="case-cat-tag">Violence</span>
+          </div>
+          <div class="case-body">
+            <div class="case-num">Case 06</div>
+            <div class="case-title">Sexual Harassment</div>
+            <p class="case-text">Record out-of-court settlement achieved for four employees, alongside mandatory policy reform across the defendant organisation.</p>
+          </div>
+          <div class="case-footer">
+            <span class="case-result">✓ Record Settlement</span>
+            <a href="#" class="case-cta" onclick="openModal(this)">Read More</a>
+          </div>
+        </div>
+
+        <div class="case-card reveal" data-cat="financial" data-title="Capital Management" data-full="Senior Attorney Tiernan Brady led a complex capital management dispute in which our client's business assets had been misappropriated by a former partner. We pursued simultaneous civil and criminal proceedings, freezing assets across three jurisdictions, and ultimately recovered over £4.2 million. We manage our clients' capital interests with the best legal assistance available — protecting wealth and securing futures." data-result="£4.2M Recovered" data-img="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80&auto=format&fit=crop">
+          <div class="case-img">
+            <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80&auto=format&fit=crop" alt="Capital Management Case" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="img-ph" style="display:none;height:100%"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Case Image</span></div>
+            <span class="case-cat-tag">Financial</span>
+          </div>
+          <div class="case-body">
+            <div class="case-num">Case 07</div>
+            <div class="case-title">Capital Management</div>
+            <p class="case-text">£4.2 million recovered from misappropriation across three jurisdictions through simultaneous civil and criminal proceedings.</p>
+          </div>
+          <div class="case-footer">
+            <span class="case-result">✓ £4.2M Recovered</span>
+            <a href="#" class="case-cta" onclick="openModal(this)">Read More</a>
+          </div>
+        </div>
+
+        <div class="case-card reveal" data-cat="financial" data-title="Finance & Banking" data-full="Working hand in hand with our client's banking institution, ALP resolved a complex debt restructuring dispute involving contested loan agreements, regulatory compliance failures, and international guarantee arrangements. Our financial litigation team secured a favourable restructuring package that reduced liability by 58% and preserved the client's trading operation. We provide the best financial legal assistance in coordination with our clients' banks." data-result="58% Liability Reduced" data-img="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80&auto=format&fit=crop">
+          <div class="case-img">
+            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80&auto=format&fit=crop" alt="Finance & Banking Case" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="img-ph" style="display:none;height:100%"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Case Image</span></div>
+            <span class="case-cat-tag">Financial</span>
+          </div>
+          <div class="case-body">
+            <div class="case-num">Case 08</div>
+            <div class="case-title">Finance & Banking</div>
+            <p class="case-text">Debt restructuring dispute resolved with a 58% liability reduction, preserving our client's full trading operation.</p>
+          </div>
+          <div class="case-footer">
+            <span class="case-result">✓ 58% Liability Reduced</span>
+            <a href="#" class="case-cta" onclick="openModal(this)">Read More</a>
+          </div>
+        </div>
+
+        <div class="case-card reveal" data-cat="personal" data-title="Car Accident" data-full="Car accidents are one of our daily challenges and we work hard to ensure our clients receive their full insurance entitlement. In this case, our client was struck by an uninsured driver and initially received no offer from the Motor Insurers' Bureau. Our team pursued every avenue, ultimately securing a full settlement covering vehicle replacement, medical expenses, and eighteen months of lost income — plus a contribution to legal fees." data-result="Full Insurance Won" data-img="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=800&q=80&auto=format&fit=crop">
+          <div class="case-img">
+            <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=600&q=80&auto=format&fit=crop" alt="Car Accident Case" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="img-ph" style="display:none;height:100%"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Case Image</span></div>
+            <span class="case-cat-tag">Personal</span>
+          </div>
+          <div class="case-body">
+            <div class="case-num">Case 09</div>
+            <div class="case-title">Car Accident</div>
+            <p class="case-text">Full settlement secured against uninsured driver, covering vehicle, medical costs, and 18 months of lost income.</p>
+          </div>
+          <div class="case-footer">
+            <span class="case-result">✓ Full Insurance Won</span>
+            <a href="#" class="case-cta" onclick="openModal(this)">Read More</a>
+          </div>
+        </div>
+
+        <div class="case-card reveal" data-cat="crime" data-title="Criminal Defence" data-full="ALP defended a client charged with serious financial crime who faced a potential 12-year custodial sentence. Our criminal defence team identified critical procedural failings in the prosecution's evidence-gathering process, successfully argued for exclusion of key exhibits, and secured a not-guilty verdict at Crown Court. We fight against crime and maintain peace — but we will always fight equally hard for a client whose rights have been violated." data-result="Not Guilty Verdict" data-img="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80&auto=format&fit=crop">
+          <div class="case-img">
+            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&q=80&auto=format&fit=crop" alt="Criminal Defence Case" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="img-ph" style="display:none;height:100%"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Case Image</span></div>
+            <span class="case-cat-tag">Crime</span>
+          </div>
+          <div class="case-body">
+            <div class="case-num">Case 10</div>
+            <div class="case-title">Criminal Defence</div>
+            <p class="case-text">Not guilty verdict secured at Crown Court after identifying critical procedural failings in the prosecution's case.</p>
+          </div>
+          <div class="case-footer">
+            <span class="case-result">✓ Not Guilty Verdict</span>
+            <a href="#" class="case-cta" onclick="openModal(this)">Read More</a>
+          </div>
+        </div>
+
+        <div class="case-card reveal" data-cat="family" data-title="Child Custody" data-full="Our family law team secured sole custody rights for a parent in an acrimonious international custody dispute spanning UK and EU jurisdictions. Working alongside European legal partners, we navigated conflicting family law frameworks, obtained emergency orders, and ultimately delivered a permanent residence arrangement that prioritised the children's welfare above all. Family crime and welfare is one of the most significant areas of our practice." data-result="Sole Custody Granted" data-img="https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=800&q=80&auto=format&fit=crop">
+          <div class="case-img">
+            <img src="https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=600&q=80&auto=format&fit=crop" alt="Child Custody Case" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="img-ph" style="display:none;height:100%"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Case Image</span></div>
+            <span class="case-cat-tag">Family</span>
+          </div>
+          <div class="case-body">
+            <div class="case-num">Case 11</div>
+            <div class="case-title">Child Custody</div>
+            <p class="case-text">International custody dispute resolved across UK and EU jurisdictions with sole residence permanently secured.</p>
+          </div>
+          <div class="case-footer">
+            <span class="case-result">✓ Sole Custody Granted</span>
+            <a href="#" class="case-cta" onclick="openModal(this)">Read More</a>
+          </div>
+        </div>
+
+        <div class="case-card reveal" data-cat="financial" data-title="Inheritance Dispute" data-full="Led by Senior Attorney Tiernan Brady, our team resolved a bitterly contested £7.8 million inheritance dispute involving five beneficiaries, offshore assets, and a disputed will. Through expert forensic document analysis, we established the authenticity of our client's entitlement and achieved a court-ordered division that protected their full inheritance — plus an award of costs against the contesting parties." data-result="£7.8M Inheritance Won" data-img="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80&auto=format&fit=crop">
+          <div class="case-img">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&auto=format&fit=crop" alt="Inheritance Case" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="img-ph" style="display:none;height:100%"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Case Image</span></div>
+            <span class="case-cat-tag">Financial</span>
+          </div>
+          <div class="case-body">
+            <div class="case-num">Case 12</div>
+            <div class="case-title">Inheritance Dispute</div>
+            <p class="case-text">£7.8 million inheritance secured against five contesting beneficiaries through forensic document analysis and court order.</p>
+          </div>
+          <div class="case-footer">
+            <span class="case-result">✓ £7.8M Inheritance Won</span>
+            <a href="#" class="case-cta" onclick="openModal(this)">Read More</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stats-bar-inner">
+      <div class="stat-item"><div class="stat-num-big" data-count="13">0</div><div class="stat-label">Our Attorneys</div></div>
+      <div class="stat-item"><div class="stat-num-big" data-count="75">0</div><div class="stat-label">K+ Projects Completed</div></div>
+      <div class="stat-item"><div class="stat-num-big" data-count="70">0</div><div class="stat-label">K+ Satisfied Clients</div></div>
+      <div class="stat-item"><div class="stat-num-big" data-count="27">0</div><div class="stat-label">Winning Awards</div></div>
+    </div>
+  </div>
+
+  <!-- Contact CTA -->
+  <section class="contact-cta-sec">
+    <div class="container">
+      <div class="contact-cta-grid">
+        <div>
+          <div class="section-tag reveal">Don't Hesitate</div>
+          <h2 class="section-title reveal">Contact Us to <em>Discuss Your Case</em></h2>
+          <div class="divider"></div>
+          <p class="section-sub reveal">Our Lawyer Has Been A Good Friend — Putting Smiles On Our Faces. Your consultation is free, confidential, and without obligation.</p>
+          <div class="cta-info-items reveal">
+            <div class="cta-info-item">
+              <div class="cta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div><div class="cta-label">Our Location</div><div class="cta-value">2 Dyott St, London WC1A 1DE, United Kingdom</div></div>
+            </div>
+            <div class="cta-info-item">
+              <div class="cta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.02 4.18 2 2 0 012 2.02h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.16 6.16l1.27-1.34a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
+              <div><div class="cta-label">Phone Number</div><div class="cta-value">+44 207 006 1300</div></div>
+            </div>
+            <div class="cta-info-item">
+              <div class="cta-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+              <div><div class="cta-label">Email Address</div><div class="cta-value">enquiries@aegislawpartners.com</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="form-row">
+            <div class="form-group"><label>Full Name *</label><input type="text" placeholder="Your full name" /></div>
+            <div class="form-group"><label>Email Address *</label><input type="email" placeholder="your@email.com" /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+44 000 000 0000" /></div>
+            <div class="form-group"><label>Practice Area *</label>
+              <select>
+                <option value="" disabled selected>Select a service</option>
+                <option>Real Estate Law</option><option>Criminal Defence</option>
+                <option>Domestic Violence</option><option>Financial Settlements</option>
+                <option>Digital Media Law</option><option>Family Law</option><option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group"><label>Message *</label><textarea placeholder="Briefly describe your situation..."></textarea></div>
+          <button class="btn-primary" style="width:100%;text-align:center;" onclick="handleSubmit(event)"><span>Submit Enquiry</span></button>
+          <p style="font-size:.68rem;color:var(--muted);margin-top:1rem;line-height:1.6;">All enquiries are treated with strict confidentiality. We respond within one business day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Banner -->
+  <div class="banner">
+    <div>
+      <div class="banner-text">"Committed to Helping Our Clients Succeed."</div>
+      <div class="banner-sub">Our Independence Makes the Difference</div>
+    </div>
+    <a href="contact.html" class="banner-btn">Book a Free Consultation</a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo"><span class="logo-alp">ALP</span></div>
+          <p class="footer-desc">ALP Aegis Law Partners provides comprehensive international legal services, built on trust, integrity, and an unwavering commitment to excellence. London · New York · Global.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-link" title="Facebook">f</a>
+            <a href="#" class="social-link" title="Twitter">𝕏</a>
+            <a href="#" class="social-link" title="Instagram">◎</a>
+            <a href="#" class="social-link" title="LinkedIn">in</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Practice Areas</div>
+          <div class="footer-links">
+            <a href="services.html">Real Estate Law</a><a href="services.html">Criminal Defence</a>
+            <a href="services.html">Domestic Violence</a><a href="services.html">Financial Settlements</a>
+            <a href="services.html">Digital Media Law</a><a href="services.html">Family Law</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">The Firm</div>
+          <div class="footer-links">
+            <a href="index.html#about">About ALP</a><a href="index.html#history">Our History</a>
+            <a href="index.html#team">Our Team</a><a href="cases.html">Case Studies</a>
+            <a href="index.html#testimonials">Client Stories</a><a href="contact.html">Contact Us</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Stay Informed</div>
+          <p style="font-size:.78rem;color:rgba(255,255,255,.32);line-height:1.7;margin-bottom:1rem;">Receive legal insights and firm updates directly to your inbox.</p>
+          <div class="footer-newsletter"><input type="email" placeholder="Your email address" /><button>→</button></div>
+          <p style="font-size:.65rem;color:rgba(255,255,255,.22);margin-top:.75rem;">No spam. Unsubscribe at any time.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2025 ALP Aegis Law Partners LLP. All rights reserved. Authorised and regulated by the Solicitors Regulation Authority.</div>
+        <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Legal Notices</a><a href="#">Complaints</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Cursor
+    const cursor=document.getElementById('cursor'),cursorRing=document.getElementById('cursorRing');
+    let cx=0,cy=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{cx=e.clientX;cy=e.clientY;});
+    (function animCursor(){cursor.style.left=cx+'px';cursor.style.top=cy+'px';rx+=(cx-rx)*.12;ry+=(cy-ry)*.12;cursorRing.style.left=rx+'px';cursorRing.style.top=ry+'px';requestAnimationFrame(animCursor)})();
+    document.querySelectorAll('a,button,.case-card').forEach(el=>{
+      el.addEventListener('mouseenter',()=>{cursor.classList.add('active');cursorRing.classList.add('active');});
+      el.addEventListener('mouseleave',()=>{cursor.classList.remove('active');cursorRing.classList.remove('active');});
+    });
+    // Nav
+    window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>60));
+    // Mobile menu
+    function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');document.getElementById('hamburger').classList.toggle('open');}
+    function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');document.getElementById('hamburger').classList.remove('open');}
+    // Reveal
+    const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target);}}),{threshold:.08});
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+    // Counters
+    const cObs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){const t=parseInt(e.target.dataset.count);let c=0;const s=t/60;const tm=setInterval(()=>{c=Math.min(c+s,t);e.target.textContent=Math.floor(c);if(c>=t)clearInterval(tm);},25);cObs.unobserve(e.target);}}),{threshold:.5});
+    document.querySelectorAll('[data-count]').forEach(el=>cObs.observe(el));
+    // Filter
+    document.querySelectorAll('.filter-btn').forEach(btn=>{
+      btn.addEventListener('click',function(){
+        document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+        this.classList.add('active');
+        const filter=this.dataset.filter;
+        document.querySelectorAll('.case-card').forEach(card=>{
+          if(filter==='all'||card.dataset.cat===filter){
+            card.classList.remove('hidden');
+          }else{
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+    // Modal
+    function openModal(el){
+      const card=el.closest('.case-card');
+      document.getElementById('modalImg').src=card.dataset.img||'';
+      document.getElementById('modalImg').alt=card.dataset.title;
+      document.getElementById('modalCat').textContent=card.dataset.cat.charAt(0).toUpperCase()+card.dataset.cat.slice(1)+' Law';
+      document.getElementById('modalTitle').textContent=card.dataset.title;
+      document.getElementById('modalText').textContent=card.dataset.full;
+      document.getElementById('modalOverlay').classList.add('open');
+      document.body.style.overflow='hidden';
+      return false;
+    }
+    function closeModal(e){if(e.target===document.getElementById('modalOverlay'))closeModalBtn();}
+    function closeModalBtn(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';}
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModalBtn();});
+    // Form
+    function handleSubmit(e){
+      e.preventDefault();const btn=e.currentTarget;
+      btn.querySelector('span').textContent='Enquiry Submitted ✓';
+      btn.style.background='#2c5f8a';
+      setTimeout(()=>{btn.querySelector('span').textContent='Submit Enquiry';btn.style.background='';},3000);
+    }
+  </script>
+</body>
+</html>

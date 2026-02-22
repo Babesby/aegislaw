@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALP Aegis Law Partners — Excellence. Integrity. Results.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --obsidian: #ffffff;
+      --deep: #f7f5f0;
+      --surface: #f0ede6;
+      --card: #ede9e0;
+      --border: rgba(180, 155, 100, 0.22);
+      --gold: #a8862e;
+      --gold-light: #c9a84c;
+      --gold-dim: rgba(168, 134, 46, 0.28);
+      --ivory: #1a1610;
+      --ivory-dim: rgba(26, 22, 16, 0.72);
+      --text: #2a2318;
+      --muted: rgba(42, 35, 24, 0.52);
+      --accent: #2c5f8a;
+      --accent-dim: rgba(44, 95, 138, 0.12);
+      --nav-bg: rgba(255,255,255,0.96);
+      --r: 0.75rem;
+      --trans: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--obsidian);
+      color: var(--text);
+      font-weight: 300;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* Light mode scrollbar */
+    ::-webkit-scrollbar-track { background: var(--deep) !important; }
+
+    /* Custom cursor */
+    .cursor {
+      position: fixed; top: 0; left: 0; width: 8px; height: 8px;
+      background: var(--gold); border-radius: 50%; pointer-events: none;
+      z-index: 9999; transform: translate(-50%, -50%);
+      transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+    }
+    .cursor-ring {
+      position: fixed; top: 0; left: 0; width: 36px; height: 36px;
+      border: 1px solid var(--gold-dim); border-radius: 50%; pointer-events: none;
+      z-index: 9998; transform: translate(-50%, -50%);
+      transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
+    }
+    .cursor.active { width: 14px; height: 14px; background: var(--gold-light); }
+    .cursor-ring.active { width: 56px; height: 56px; border-color: var(--gold); }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--obsidian); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+    /* ─── SUBTLE TEXTURE ─── */
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 1000; opacity: 0.4;
+    }
+
+    /* ─── NAVIGATION ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      padding: 0 max(2rem, 5vw);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: var(--trans);
+    }
+    nav.scrolled { background: rgba(255,255,255,0.98); box-shadow: 0 1px 24px rgba(168,134,46,0.08); }
+    .nav-inner {
+      max-width: 1400px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 76px;
+    }
+    .nav-logo {
+      display: flex; align-items: baseline; gap: 0.5rem; text-decoration: none;
+    }
+    .logo-alp {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem; font-weight: 600; color: var(--gold);
+      letter-spacing: 0.08em; line-height: 1;
+    }
+    .logo-full {
+      font-size: 0.65rem; font-weight: 300; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 2.5rem; list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.75rem;
+      font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase;
+      transition: color var(--trans); position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+      background: var(--gold); transition: width var(--trans);
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      padding: 0.6rem 1.5rem; border: 1px solid var(--gold-dim);
+      color: var(--gold) !important; font-size: 0.7rem !important;
+      letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;
+      transition: all var(--trans) !important; white-space: nowrap;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--gold) !important; color: #ffffff !important; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: none; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 1px;
+      background: var(--gold); transition: var(--trans);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed; inset: 0; background: #ffffff; z-index: 400;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 2rem; transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.77,0,0.175,1);
+    }
+    .mobile-menu.open { transform: translateX(0); }
+    .mobile-menu a {
+      font-family: 'Cormorant Garamond', serif; font-size: 2.5rem;
+      font-weight: 300; color: rgba(26,22,16,0.55); text-decoration: none;
+      letter-spacing: 0.06em; transition: color var(--trans);
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh; position: relative; display: flex;
+      align-items: center; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(168,134,46,0.07) 0%, transparent 70%),
+                  radial-gradient(ellipse 60% 50% at 20% 80%, rgba(44,95,138,0.05) 0%, transparent 60%),
+                  linear-gradient(160deg, #ffffff 0%, #f5f1ea 60%, #ede8dd 100%);
+    }
+    .hero-img {
+      position: absolute; right: 0; top: 0; bottom: 0; width: 52%;
+      overflow: hidden;
+    }
+    .hero-img img, .hero-img .img-placeholder {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .img-placeholder {
+      background: var(--surface);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.75rem; color: var(--muted); font-size: 0.7rem; letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .img-placeholder svg { opacity: 0.4; color: var(--gold); }
+    .hero-img::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 60%; z-index: 1;
+      background: linear-gradient(90deg, #ffffff 30%, transparent 100%);
+    }
+    .hero-img::after {
+      content: ''; position: absolute; inset: 0; z-index: 1;
+      background: rgba(245,241,234,0.12);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 max(2rem, 5vw); max-width: 1400px; margin: 0 auto; width: 100%;
+      padding-top: 100px;
+    }
+    .hero-eyebrow {
+      font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;
+      opacity: 0; animation: fadeUp 0.8s 0.3s forwards;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 40px; height: 1px; background: var(--gold);
+    }
+    .hero-h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.2rem, 7vw, 7rem);
+      font-weight: 300; line-height: 1.05; letter-spacing: -0.01em;
+      color: #1a1610; max-width: 620px;
+      opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
+    }
+    .hero-h1 em { font-style: italic; color: var(--gold); }
+    .hero-desc {
+      font-size: 0.9rem; line-height: 1.8; color: var(--muted);
+      max-width: 380px; margin-top: 1.5rem;
+      opacity: 0; animation: fadeUp 0.8s 0.7s forwards;
+    }
+    .hero-actions {
+      display: flex; gap: 1.2rem; margin-top: 2.5rem; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.8s 0.9s forwards;
+    }
+    .btn-primary {
+      padding: 1rem 2.5rem; background: var(--gold);
+      color: #ffffff; font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;
+      transition: var(--trans); position: relative; overflow: hidden;
+      white-space: nowrap;
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: #1a1610; transform: translateX(-101%);
+      transition: transform var(--trans);
+    }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary span { position: relative; z-index: 1; color: #fff; }
+    .btn-secondary {
+      padding: 1rem 2.5rem; border: 1px solid rgba(26,22,16,0.2);
+      color: var(--text); font-size: 0.7rem; font-weight: 400;
+      letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;
+      transition: var(--trans); white-space: nowrap;
+    }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+    .hero-stats {
+      display: flex; gap: 3rem; margin-top: 5rem; padding-top: 3rem;
+      border-top: 1px solid var(--border);
+      opacity: 0; animation: fadeUp 0.8s 1.1s forwards;
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 300; color: var(--gold); line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); margin-top: 0.3rem;
+    }
+
+    /* ─── SECTION COMMON ─── */
+    section { padding: clamp(5rem, 10vw, 9rem) max(2rem, 5vw); }
+    .container { max-width: 1400px; margin: 0 auto; }
+    .section-tag {
+      font-size: 0.6rem; letter-spacing: 0.38em; text-transform: uppercase;
+      color: var(--gold); display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 1.2rem;
+    }
+    .section-tag::before { content: '—'; color: var(--gold-dim); }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4.5vw, 4rem);
+      font-weight: 300; line-height: 1.1; color: #1a1610;
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .section-sub {
+      font-size: 0.85rem; color: var(--muted); line-height: 1.9;
+      max-width: 520px; margin-top: 1rem;
+    }
+    .divider {
+      width: 48px; height: 1px; background: var(--gold);
+      margin: 1.5rem 0;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── ABOUT ─── */
+    .about { background: var(--deep); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+    }
+    .about-img {
+      position: relative; aspect-ratio: 4/5; overflow: hidden;
+    }
+    .about-img img, .about-img .img-placeholder {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .about-img::before {
+      content: ''; position: absolute; inset: -1px;
+      border: 1px solid var(--gold-dim); transform: translate(12px, 12px);
+      z-index: 0; pointer-events: none;
+    }
+    .about-img img, .about-img .img-placeholder { position: relative; z-index: 1; }
+    .about-badge {
+      position: absolute; bottom: -1.5rem; right: -1.5rem; z-index: 2;
+      background: var(--gold); color: var(--obsidian);
+      padding: 1.5rem 2rem; text-align: center;
+    }
+    .about-badge-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem; font-weight: 600; line-height: 1;
+    }
+    .about-badge-txt {
+      font-size: 0.6rem; font-weight: 500; letter-spacing: 0.18em;
+      text-transform: uppercase; margin-top: 0.2rem;
+    }
+    .about-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+    .about-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .about-icon {
+      width: 36px; height: 36px; border: 1px solid var(--gold-dim);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); flex-shrink: 0; font-size: 0.8rem;
+    }
+    .about-item-title {
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #1a1610; margin-bottom: 0.25rem;
+    }
+    .about-item-text { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+
+    /* ─── TIMELINE ─── */
+    .timeline { background: var(--obsidian); }
+    .timeline-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 4rem; }
+    .timeline-item {
+      padding: 2rem; border: 1px solid var(--border);
+      position: relative; transition: var(--trans);
+    }
+    .timeline-item:hover { border-color: var(--gold-dim); background: var(--card); }
+    .timeline-year {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem; font-weight: 300; color: var(--gold-dim);
+      line-height: 1; margin-bottom: 1rem;
+    }
+    .timeline-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 400; color: #1a1610; margin-bottom: 0.75rem;
+    }
+    .timeline-text { font-size: 0.82rem; color: var(--muted); line-height: 1.8; }
+
+    /* ─── PRACTICE AREAS ─── */
+    .practice { background: var(--deep); }
+    .practice-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; gap: 2rem; }
+    .practice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5px; background: var(--border);
+    }
+    .practice-card {
+      background: var(--deep); padding: 2.5rem 2rem;
+      position: relative; overflow: hidden; transition: var(--trans);
+    }
+    .practice-card::before {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: var(--gold); transform: scaleX(0); transform-origin: left;
+      transition: transform var(--trans);
+    }
+    .practice-card:hover { background: var(--card); }
+    .practice-card:hover::before { transform: scaleX(1); }
+    .practice-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; color: var(--gold-dim); margin-bottom: 1.5rem;
+    }
+    .practice-icon {
+      width: 48px; height: 48px; margin-bottom: 1.5rem;
+      color: var(--gold);
+    }
+    .practice-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 400; color: #1a1610; margin-bottom: 0.75rem;
+    }
+    .practice-text { font-size: 0.8rem; color: var(--muted); line-height: 1.8; }
+    .practice-arrow {
+      margin-top: 1.5rem; font-size: 0.65rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--gold); opacity: 0;
+      transition: opacity var(--trans);
+    }
+    .practice-card:hover .practice-arrow { opacity: 1; }
+
+    /* ─── PROCESS ─── */
+    .process { background: var(--obsidian); }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; margin-top: 4rem; position: relative;
+    }
+    .process-steps::before {
+      content: ''; position: absolute; top: 28px; left: 10%; right: 10%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    }
+    .process-step { padding: 0 1.5rem; text-align: center; }
+    .step-num {
+      width: 56px; height: 56px; border: 1px solid var(--gold-dim);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;
+      color: var(--gold); background: var(--deep); position: relative; z-index: 1;
+    }
+    .step-title {
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #1a1610; margin-bottom: 0.75rem;
+    }
+    .step-text { font-size: 0.78rem; color: var(--muted); line-height: 1.7; }
+
+    /* ─── TEAM ─── */
+    .team { background: var(--deep); }
+    .team-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem;
+    }
+    .team-card { position: relative; overflow: hidden; }
+    .team-img {
+      aspect-ratio: 3/4; overflow: hidden; position: relative;
+    }
+    .team-img img, .team-img .img-placeholder {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+    .team-card:hover .team-img img,
+    .team-card:hover .team-img .img-placeholder { transform: scale(1.04); }
+    .team-overlay {
+      position: absolute; inset: 0; background: linear-gradient(0deg, rgba(10,10,15,0.9) 30%, transparent 100%);
+    }
+    .team-info {
+      padding: 1.5rem 1.5rem 1.5rem;
+      background: #ffffff; border-bottom: 2px solid var(--gold);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+    .team-name {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.5rem;
+      font-weight: 400; color: #1a1610;
+    }
+    .team-role {
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-top: 0.25rem;
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials { background: var(--obsidian); overflow: hidden; }
+    .testimonials-track {
+      display: flex; gap: 2rem; margin-top: 4rem;
+      animation: scroll 40s linear infinite;
+      width: max-content;
+    }
+    .testimonials-track:hover { animation-play-state: paused; }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .testi-card {
+      width: 380px; flex-shrink: 0; padding: 2.5rem;
+      border: 1px solid var(--border); background: #ffffff;
+      box-shadow: 0 2px 20px rgba(168,134,46,0.05);
+    }
+    .testi-stars { color: var(--gold); font-size: 0.9rem; letter-spacing: 0.2em; margin-bottom: 1.25rem; }
+    .testi-text {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.15rem;
+      font-weight: 300; font-style: italic; color: #1a1610; line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .testi-author {
+      font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .testi-author span { color: var(--gold); }
+
+    /* ─── CONSULTATION ─── */
+    .consult {
+      background: linear-gradient(135deg, var(--deep) 0%, var(--surface) 100%);
+      position: relative; overflow: hidden;
+    }
+    .consult::before {
+      content: ''; position: absolute; top: -50%; right: -20%;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .consult-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+    .form-group label {
+      font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: #ffffff; border: 1px solid var(--border);
+      color: var(--text); padding: 0.85rem 1rem; font-family: 'Jost', sans-serif;
+      font-size: 0.82rem; font-weight: 300; transition: border-color var(--trans);
+      outline: none; width: 100%; resize: none;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); background: rgba(168,134,46,0.03); }
+    .form-group select option { background: #ffffff; color: var(--text); }
+    .form-group textarea { height: 120px; }
+    .contact-details { display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem; }
+    .contact-item { display: flex; gap: 1.25rem; align-items: flex-start; }
+    .contact-icon-wrap {
+      width: 44px; height: 44px; border: 1px solid var(--gold-dim);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); flex-shrink: 0;
+    }
+    .contact-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+    .contact-value { font-size: 0.85rem; color: var(--text); margin-top: 0.2rem; line-height: 1.5; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #1a1610; border-top: 1px solid rgba(168,134,46,0.2);
+      padding: 5rem max(2rem, 5vw) 2rem;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 4rem; padding-bottom: 4rem; border-bottom: 1px solid rgba(168,134,46,0.15);
+    }
+    .footer-logo { margin-bottom: 1rem; }
+    .footer-desc { font-size: 0.8rem; color: rgba(255,255,255,0.45); line-height: 1.8; }
+    .footer-socials { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+    .social-link {
+      width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.4); text-decoration: none; transition: var(--trans);
+      font-size: 0.75rem;
+    }
+    .social-link:hover { border-color: var(--gold); color: var(--gold); }
+    .footer-heading {
+      font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 0.65rem; }
+    .footer-links a {
+      font-size: 0.8rem; color: rgba(255,255,255,0.4); text-decoration: none;
+      transition: color var(--trans);
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.85); }
+    .footer-newsletter { display: flex; margin-top: 1.5rem; }
+    .footer-newsletter input {
+      flex: 1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+      border-right: none; padding: 0.75rem 1rem; color: rgba(255,255,255,0.8);
+      font-family: 'Jost', sans-serif; font-size: 0.75rem; outline: none;
+    }
+    .footer-newsletter button {
+      background: var(--gold); border: none; padding: 0.75rem 1rem;
+      color: #ffffff; cursor: none; font-size: 0.8rem;
+      transition: background var(--trans);
+    }
+    .footer-newsletter button:hover { background: var(--gold-light); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 2rem; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.3); }
+    .footer-legal { display: flex; gap: 1.5rem; }
+    .footer-legal a {
+      font-size: 0.68rem; color: rgba(255,255,255,0.3); text-decoration: none;
+      letter-spacing: 0.1em; transition: color var(--trans);
+    }
+    .footer-legal a:hover { color: var(--gold); }
+
+    /* ─── AKASHIC DIVIDER ─── */
+    .sacred-divider {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1.5rem; padding: 3rem max(2rem, 5vw);
+      background: var(--obsidian);
+    }
+    .sacred-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-dim), transparent); max-width: 300px; }
+    .sacred-symbol {
+      font-size: 1.2rem; color: var(--gold-dim); letter-spacing: 0.5em;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    /* ─── BANNER ─── */
+    .banner {
+      background: var(--gold);
+      padding: 1.5rem max(2rem, 5vw);
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+    }
+    .banner-text {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.4rem;
+      font-weight: 400; color: #1a1610; font-style: italic;
+    }
+    .banner-sub {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(26,22,16,0.55); margin-top: 0.2rem;
+    }
+    .banner-btn {
+      padding: 0.75rem 2rem; border: 1.5px solid #1a1610;
+      color: #1a1610; font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;
+      transition: all 0.3s ease; white-space: nowrap;
+    }
+    .banner-btn:hover { background: #1a1610; color: var(--gold); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-img { max-width: 500px; }
+      .timeline-grid { grid-template-columns: 1fr; }
+      .consult-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .process-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .process-steps::before { display: none; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-img { display: none; }
+      .hero-h1 { max-width: 100%; }
+      .hero-stats { gap: 2rem; flex-wrap: wrap; }
+      .practice-header { flex-direction: column; align-items: flex-start; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .team-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+     <a href="index.html" onclick="closeMenu()">Home</a>
+    <a href="#about" onclick="closeMenu()">About</a>
+      <a href="services.html" onclick="closeMenu()">Services</a>
+      <a href="cases.html" onclick="closeMenu()">Cases</a>
+       <a href="contact.html" onclick="closeMenu()">Consultation</a>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="logo-alp">ALP</span>
+        <span class="logo-full">Aegis Law Partners</span>
+      </a>
+      <ul class="nav-links">
+         <li><a href="index.html">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="cases.html">Case Studies</a></li>
+        <li><a href="contact.html" class="nav-cta">Free Consultation</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-img">
+      <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=80&auto=format&fit=crop" alt="ALP Aegis Law Partners Office" onerror="this.parentNode.innerHTML='<div class=\'img-placeholder\'><svg width=\'48\' height=\'48\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1\'><rect x=\'3\' y=\'3\' width=\'18\' height=\'18\' rx=\'2\'/><circle cx=\'8.5\' cy=\'8.5\' r=\'1.5\'/><polyline points=\'21 15 16 10 5 21\'/></svg><span>Hero Image</span></div>'" />
+    </div>
+    <div class="hero-content container">
+      <div class="hero-eyebrow">London · New York · Global Reach</div>
+      <h1 class="hero-h1">The Law. <em>Precisely</em> Wielded.</h1>
+      <p class="hero-desc">ALP Aegis Law Partners brings decades of international expertise, principled counsel, and unwavering commitment to achieving outcomes that matter for our clients.</p>
+      <div class="hero-actions">
+        <a href="#consult" class="btn-primary"><span>Free Consultation</span></a>
+        <a href="#practice" class="btn-secondary">Our Practice Areas</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num" data-count="75">0</div>
+          <div class="stat-label">K+ Cases Handled</div>
+        </div>
+        <div>
+          <div class="stat-num" data-count="27">0</div>
+          <div class="stat-label">Industry Awards</div>
+        </div>
+        <div>
+          <div class="stat-num" data-count="13">0</div>
+          <div class="stat-label">Senior Attorneys</div>
+        </div>
+        <div>
+          <div class="stat-num" data-count="35">0</div>
+          <div class="stat-label">Years of Excellence</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img reveal">
+          <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80&auto=format&fit=crop" alt="ALP Law Partners – Counsel" onerror="this.style.display='none'; this.parentNode.querySelector('.img-placeholder').style.display='flex'" />
+          <div class="img-placeholder" style="display:none; position:absolute; inset:0;">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            <span>About Image</span>
+          </div>
+          <div class="about-badge">
+            <div class="about-badge-num">1987</div>
+            <div class="about-badge-txt">Est. London</div>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="section-tag">Who We Are</div>
+          <h2 class="section-title">Preserving relationships is the <em>foundation</em> of success.</h2>
+          <div class="divider"></div>
+          <p class="section-sub">ALP Aegis Law Partners is one of the foremost international law firms. As a firm, we look to the future rather than the past. We anticipate evolving client needs, not only in terms of where they seek legal advice, but how they want it delivered.</p>
+          <p class="section-sub" style="margin-top:1rem;">Our independence makes the difference — we operate without franchise constraints, ensuring our counsel is always shaped solely by what is right for you.</p>
+          <div class="about-list">
+            <div class="about-item">
+              <div class="about-icon">⚖</div>
+              <div>
+                <div class="about-item-title">Independent Counsel</div>
+                <div class="about-item-text">Free from institutional bias, our advice is governed only by your interests and the highest legal standards.</div>
+              </div>
+            </div>
+            <div class="about-item">
+              <div class="about-icon">✦</div>
+              <div>
+                <div class="about-item-title">Global Reach</div>
+                <div class="about-item-text">With offices across Europe, the Americas, and Asia Pacific, we operate wherever your legal needs arise.</div>
+              </div>
+            </div>
+            <div class="about-item">
+              <div class="about-icon">◈</div>
+              <div>
+                <div class="about-item-title">Committed to Ethics</div>
+                <div class="about-item-text">Our practice is built on trust, transparency, and an uncompromising standard of professional integrity.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sacred Divider -->
+  <div class="sacred-divider">
+    <div class="sacred-line"></div>
+    <div class="sacred-symbol">✦ ALP ✦</div>
+    <div class="sacred-line"></div>
+  </div>
+
+  <!-- Timeline -->
+  <section class="timeline" id="history">
+    <div class="container">
+      <div class="section-tag reveal">Our Heritage</div>
+      <h2 class="section-title reveal">A History Forged in <em>Excellence</em></h2>
+      <div class="timeline-grid">
+        <div class="timeline-item reveal">
+          <div class="timeline-year">1987</div>
+          <div class="timeline-heading">The Founding Merger</div>
+          <p class="timeline-text">ALP came into being when two landmark London firms united to form the pre-eminent legal practice in Europe. The merger was predicated on the shared belief that leading organisations would seek legal advice that looked beyond borders and narrow expertise.</p>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-year">2000</div>
+          <div class="timeline-heading">A Global Firm is Born</div>
+          <p class="timeline-text">ALP undertook a landmark tripartite merger with a leading German firm and a New York powerhouse. The combined geographic footprint and depth of expertise created one of the world's first truly global law firms — a legacy we uphold to this day.</p>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-year">2010</div>
+          <div class="timeline-heading">Technology & Innovation</div>
+          <p class="timeline-text">We led the industry in adopting sophisticated document management, IT systems, and best-in-class learning — establishing offshore legal support centres that set new standards for efficient, cost-effective service delivery.</p>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-year">Today</div>
+          <div class="timeline-heading">Shaping Tomorrow's Law</div>
+          <p class="timeline-text">Our sights remain firmly set on staying in the vanguard of the legal industry as it evolves to meet the demands of a more complex, faster-changing, more connected world. The future is where we live.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Banner -->
+  <div class="banner">
+    <div>
+      <div class="banner-text">"Committed to Helping Our Clients Succeed."</div>
+      <div class="banner-sub">Our Independence Makes the Difference</div>
+    </div>
+    <a href="#consult" class="banner-btn">Book a Consultation</a>
+  </div>
+
+  <!-- Practice Areas -->
+  <section class="practice" id="practice">
+    <div class="container">
+      <div class="practice-header">
+        <div>
+          <div class="section-tag reveal">What We Do</div>
+          <h2 class="section-title reveal">Areas of <em>Legal Practice</em></h2>
+        </div>
+        <p class="section-sub reveal">Bold approaches. Expert counsel. Results that matter. Our attorneys bring deep specialisation and strategic clarity to every case.</p>
+      </div>
+      <div class="practice-grid">
+        <div class="practice-card reveal">
+          <div class="practice-num">01</div>
+          <svg class="practice-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <div class="practice-title">Real Estate Law</div>
+          <p class="practice-text">We have resolved over 15,000 real estate contracts with precision and foresight. Our property law specialists navigate complex transactions, disputes, and development matters across the UK and internationally.</p>
+          <div class="practice-arrow">Learn More →</div>
+        </div>
+        <div class="practice-card reveal">
+          <div class="practice-num">02</div>
+          <svg class="practice-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div class="practice-title">Criminal Defence</div>
+          <p class="practice-text">Award-winning criminal defence counsel. We fight with rigour and integrity on behalf of our clients, maintaining a track record that is unmatched in the resolution of complex criminal proceedings.</p>
+          <div class="practice-arrow">Learn More →</div>
+        </div>
+        <div class="practice-card reveal">
+          <div class="practice-num">03</div>
+          <svg class="practice-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          <div class="practice-title">Domestic Violence</div>
+          <p class="practice-text">We are among the most highly ranked firms in the UK for domestic violence cases. Our specialist team provides sensitive, robust representation with the discretion and authority your circumstances demand.</p>
+          <div class="practice-arrow">Learn More →</div>
+        </div>
+        <div class="practice-card reveal">
+          <div class="practice-num">04</div>
+          <svg class="practice-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          <div class="practice-title">Financial Settlements</div>
+          <p class="practice-text">From complex inheritance disputes to high-value financial settlements, our team has resolved over one million financial matters. Led by senior partners with extensive tribunal experience.</p>
+          <div class="practice-arrow">Learn More →</div>
+        </div>
+        <div class="practice-card reveal">
+          <div class="practice-num">05</div>
+          <svg class="practice-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <div class="practice-title">Digital Media Law</div>
+          <p class="practice-text">Acknowledged by the Supreme Court for its contribution to digital and media law, our practice covers IP, content rights, data protection, platform regulation, and emerging technology disputes.</p>
+          <div class="practice-arrow">Learn More →</div>
+        </div>
+        <div class="practice-card reveal">
+          <div class="practice-num">06</div>
+          <svg class="practice-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
+          <div class="practice-title">Family Law</div>
+          <p class="practice-text">Family law demands both legal excellence and human sensitivity. Our family practice team consistently delivers the highest standard of representation in custody, divorce, and family crime matters across London and beyond.</p>
+          <div class="practice-arrow">Learn More →</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="section-tag reveal">How We Work</div>
+      <h2 class="section-title reveal">A Rigorous, <em>Transparent</em> Process</h2>
+      <div class="process-steps">
+        <div class="process-step reveal">
+          <div class="step-num">I</div>
+          <div class="step-title">Case Received</div>
+          <p class="step-text">We invite you to explain your situation fully before we define any approach. Every case is heard without judgement.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-num">II</div>
+          <div class="step-title">Report Analysis</div>
+          <p class="step-text">We work on solid, thorough reports. Our honesty and diligence in assessment is what makes us the trusted choice.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-num">III</div>
+          <div class="step-title">Evidence Collection</div>
+          <p class="step-text">We gather strong, admissible evidence and work with witnesses to build the most compelling case possible.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-num">IV</div>
+          <div class="step-title">Legal Success</div>
+          <p class="step-text">With over 1,500 successful active cases and numerous awards, our record speaks louder than any promise.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="team" id="team">
+    <div class="container">
+      <div class="section-tag reveal">Our People</div>
+      <h2 class="section-title reveal">Meet the <em>Minds</em> Behind Your Case</h2>
+      <p class="section-sub reveal">Our attorneys are not merely practitioners — they are advocates, strategists, and the best in their fields.</p>
+      <div class="team-grid">
+        <div class="team-card reveal">
+          <div class="team-img">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80&auto=format&fit=crop&crop=faces" alt="Tiernan Brady – Senior Attorney" onerror="this.src=''" />
+            <div class="team-overlay"></div>
+          </div>
+          <div class="team-info">
+            <div class="team-name">Tiernan Brady</div>
+            <div class="team-role">Senior Attorney — Financial Law</div>
+          </div>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-img">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80&auto=format&fit=crop&crop=faces" alt="Kate Gough – Associate Attorney" onerror="this.src=''" />
+            <div class="team-overlay"></div>
+          </div>
+          <div class="team-info">
+            <div class="team-name">Kate Gough</div>
+            <div class="team-role">Associate Attorney — Family Law</div>
+          </div>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-img">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&auto=format&fit=crop&crop=faces" alt="Jason Harden – Head of Group Tax" onerror="this.src=''" />
+            <div class="team-overlay"></div>
+          </div>
+          <div class="team-info">
+            <div class="team-name">Jason Harden</div>
+            <div class="team-role">Head of Group Tax</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose ALP -->
+  <section style="background: #f0ede6;">
+    <div class="container">
+      <div class="section-tag reveal">Why ALP</div>
+      <h2 class="section-title reveal">Committed to Protecting <em>What Matters Most</em></h2>
+      <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap:2rem; margin-top:3rem;">
+        <div class="reveal" style="padding:2rem; border:1px solid rgba(168,134,46,0.2); background:#ffffff; box-shadow:0 2px 16px rgba(168,134,46,0.06);">
+          <div style="font-size:2rem; color:var(--gold); margin-bottom:1rem;">◈</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:#1a1610; margin-bottom:0.75rem;">Supreme Court Aligned</div>
+          <p style="font-size:0.82rem; color:var(--muted); line-height:1.8;">We work hand in hand with the Supreme Court of Justice to achieve clean, clear results for our clients without complications.</p>
+        </div>
+        <div class="reveal" style="padding:2rem; border:1px solid rgba(168,134,46,0.2); background:#ffffff; box-shadow:0 2px 16px rgba(168,134,46,0.06);">
+          <div style="font-size:2rem; color:var(--gold); margin-bottom:1rem;">✦</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:#1a1610; margin-bottom:0.75rem;">Total Client Commitment</div>
+          <p style="font-size:0.82rem; color:var(--muted); line-height:1.8;">We are committed to our clients with every tool at our disposal, dedicating the full force of our expertise to every case we accept.</p>
+        </div>
+        <div class="reveal" style="padding:2rem; border:1px solid rgba(168,134,46,0.2); background:#ffffff; box-shadow:0 2px 16px rgba(168,134,46,0.06);">
+          <div style="font-size:2rem; color:var(--gold); margin-bottom:1rem;">⊕</div>
+          <div style="font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:#1a1610; margin-bottom:0.75rem;">Transparent Fees</div>
+          <p style="font-size:0.82rem; color:var(--muted); line-height:1.8;">No hidden charges. No surprises. We believe legal support should be accessible, honest, and structured around your needs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-tag reveal">Client Voices</div>
+      <h2 class="section-title reveal">What Our Clients <em>Say</em></h2>
+    </div>
+    <div style="overflow:hidden; margin-top:3rem;">
+      <div class="testimonials-track">
+        <!-- Set 1 -->
+        <div class="testi-card">
+          <div class="testi-stars">★ ★ ★ ★ ★</div>
+          <p class="testi-text">"ALP handled our property dispute with extraordinary precision. The outcome exceeded our expectations and the team's transparency throughout was remarkable."</p>
+          <div class="testi-author">— Jonathan K., <span>Real Estate Client</span></div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★ ★ ★ ★ ★</div>
+          <p class="testi-text">"Tiernan Brady fought tirelessly for our financial settlement. Professional, honest, and driven — exactly what you need when the stakes are this high."</p>
+          <div class="testi-author">— Priya M., <span>Financial Settlement</span></div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★ ★ ★ ★ ★</div>
+          <p class="testi-text">"The family law team gave us calm, clear guidance during the most difficult period of our lives. We could not have navigated it without them."</p>
+          <div class="testi-author">— Sarah T., <span>Family Law Client</span></div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★ ★ ★ ★ ★</div>
+          <p class="testi-text">"ALP's digital media practice is simply the best. They understood our IP landscape immediately and resolved a complex dispute swiftly and thoroughly."</p>
+          <div class="testi-author">— Marcus L., <span>Digital Media Law</span></div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★ ★ ★ ★ ★</div>
+          <p class="testi-text">"Honest, diligent, and highly skilled. ALP handled my criminal case with the kind of dedication I never believed I would find. I am grateful beyond words."</p>
+          <div class="testi-author">— David W., <span>Criminal Defence</span></div>
+        </div>
+        <!-- Duplicate set for seamless loop -->
+        <div class="testi-card">
+          <div class="testi-stars">★ ★ ★ ★ ★</div>
+          <p class="testi-text">"ALP handled our property dispute with extraordinary precision. The outcome exceeded our expectations and the team's transparency throughout was remarkable."</p>
+          <div class="testi-author">— Jonathan K., <span>Real Estate Client</span></div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★ ★ ★ ★ ★</div>
+          <p class="testi-text">"Tiernan Brady fought tirelessly for our financial settlement. Professional, honest, and driven — exactly what you need when the stakes are this high."</p>
+          <div class="testi-author">— Priya M., <span>Financial Settlement</span></div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★ ★ ★ ★ ★</div>
+          <p class="testi-text">"The family law team gave us calm, clear guidance during the most difficult period of our lives. We could not have navigated it without them."</p>
+          <div class="testi-author">— Sarah T., <span>Family Law Client</span></div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★ ★ ★ ★ ★</div>
+          <p class="testi-text">"ALP's digital media practice is simply the best. They understood our IP landscape immediately and resolved a complex dispute swiftly and thoroughly."</p>
+          <div class="testi-author">— Marcus L., <span>Digital Media Law</span></div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★ ★ ★ ★ ★</div>
+          <p class="testi-text">"Honest, diligent, and highly skilled. ALP handled my criminal case with the kind of dedication I never believed I would find. I am grateful beyond words."</p>
+          <div class="testi-author">— David W., <span>Criminal Defence</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Consultation -->
+  <section class="consult" id="consult">
+    <div class="container">
+      <div class="consult-grid">
+        <div>
+          <div class="section-tag reveal">Get in Touch</div>
+          <h2 class="section-title reveal">Begin Your <em>Free</em> Consultation</h2>
+          <div class="divider"></div>
+          <p class="section-sub reveal">Our attorneys are available to hear your case, answer your questions, and provide honest initial guidance — at no cost and with absolute discretion.</p>
+          <div class="contact-details reveal">
+            <div class="contact-item">
+              <div class="contact-icon-wrap">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.02 4.18 2 2 0 012 2.02h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.16 6.16l1.27-1.34a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+              </div>
+              <div>
+                <div class="contact-label">Telephone</div>
+                <div class="contact-value">+44 207 006 1300</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon-wrap">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <div class="contact-label">Email</div>
+                <div class="contact-value">enquiries@aegislawpartners.com</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon-wrap">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <div class="contact-label">Office</div>
+                <div class="contact-value">2 Dyott Street, London WC1A 1DE, United Kingdom</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" placeholder="Your full name" />
+            </div>
+            <div class="form-group">
+              <label>Email Address *</label>
+              <input type="email" placeholder="your@email.com" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" placeholder="+44 000 000 0000" />
+            </div>
+            <div class="form-group">
+              <label>Practice Area *</label>
+              <select>
+                <option value="" disabled selected>Select a service</option>
+                <option>Real Estate Law</option>
+                <option>Criminal Defence</option>
+                <option>Domestic Violence</option>
+                <option>Financial Settlements</option>
+                <option>Digital Media Law</option>
+                <option>Family Law</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Message *</label>
+            <textarea placeholder="Briefly describe your situation..."></textarea>
+          </div>
+          <button class="btn-primary" style="width:100%; text-align:center; border:none; cursor:none; background:var(--gold); color:#fff;" onclick="handleSubmit(event)">
+            <span>Submit Enquiry</span>
+          </button>
+          <p style="font-size:0.68rem; color:var(--muted); margin-top:1rem; line-height:1.6;">All enquiries are treated with strict confidentiality. We will respond within one business day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <span class="logo-alp">ALP</span>
+          </div>
+          <p class="footer-desc">ALP Aegis Law Partners provides comprehensive international legal services, built on trust, integrity, and an unwavering commitment to excellence. London · New York · Global.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-link" title="Facebook">f</a>
+            <a href="#" class="social-link" title="Twitter">𝕏</a>
+            <a href="#" class="social-link" title="Instagram">◎</a>
+            <a href="#" class="social-link" title="LinkedIn">in</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Practice Areas</div>
+          <div class="footer-links">
+            <a href="#practice">Real Estate Law</a>
+            <a href="#practice">Criminal Defence</a>
+            <a href="#practice">Domestic Violence</a>
+            <a href="#practice">Financial Settlements</a>
+            <a href="#practice">Digital Media Law</a>
+            <a href="#practice">Family Law</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">The Firm</div>
+          <div class="footer-links">
+            <a href="#about">About ALP</a>
+            <a href="#history">Our History</a>
+            <a href="#team">Our Team</a>
+            <a href="#process">Our Process</a>
+            <a href="#testimonials">Client Stories</a>
+            <a href="#consult">Contact Us</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Stay Informed</div>
+          <p style="font-size:0.78rem; color:var(--muted); line-height:1.7; margin-bottom:1rem;">Receive legal insights and firm updates directly to your inbox.</p>
+          <div class="footer-newsletter">
+            <input type="email" placeholder="Your email address" />
+            <button>→</button>
+          </div>
+          <p style="font-size:0.65rem; color:var(--muted); margin-top:0.75rem;">No spam. Unsubscribe at any time.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2025 ALP Aegis Law Partners LLP. All rights reserved. Authorised and regulated by the Solicitors Regulation Authority.</div>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Legal Notices</a>
+          <a href="#">Complaints</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const cursorRing = document.getElementById('cursorRing');
+    let cx = 0, cy = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { cx = e.clientX; cy = e.clientY; });
+    function animCursor() {
+      cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px';
+      rx += (cx - rx) * 0.12; ry += (cy - ry) * 0.12;
+      cursorRing.style.left = rx + 'px'; cursorRing.style.top = ry + 'px';
+      requestAnimationFrame(animCursor);
+    }
+    animCursor();
+    document.querySelectorAll('a, button, .practice-card, .team-card').forEach(el => {
+      el.addEventListener('mouseenter', () => { cursor.classList.add('active'); cursorRing.classList.add('active'); });
+      el.addEventListener('mouseleave', () => { cursor.classList.remove('active'); cursorRing.classList.remove('active'); });
+    });
+
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Mobile menu
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const ham = document.getElementById('hamburger');
+      menu.classList.toggle('open');
+      ham.classList.toggle('open');
+    }
+    function closeMenu() {
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+    }
+
+    // Reveal on scroll
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // Counter animation
+    function animateCounter(el, target) {
+      let current = 0;
+      const step = target / 60;
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = Math.floor(current);
+        if (current >= target) clearInterval(timer);
+      }, 25);
+    }
+    const counterObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const target = parseInt(e.target.dataset.count);
+          animateCounter(e.target, target);
+          counterObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
+    // Form submit
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.currentTarget;
+      btn.querySelector('span').textContent = 'Enquiry Submitted ✓';
+      btn.style.background = 'var(--accent)';
+      setTimeout(() => {
+        btn.querySelector('span').textContent = 'Submit Enquiry';
+        btn.style.background = '';
+      }, 3000);
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
